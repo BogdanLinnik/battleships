@@ -32,13 +32,12 @@ class Battlefield
       return false
     end
   end
-
-  #creating new ships
   def create_ships ();
     draw_grid 
     decks_number = 3
     begin
       for ships_number in 0..(3 - decks_number)
+      # Set vertical or horizontal positioning
         begin
           potential_x_pos = Random.rand(10) + 1
           potential_y_pos = Random.rand(10) + 1
