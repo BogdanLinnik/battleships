@@ -11,12 +11,12 @@ def init_battlefield()
 end
 
 # checking for free space near new ships positions
-def check_space (potential_x_position, potential_y_position, battlefield)
+def check_space (potential_x_pos, potential_y_pos, battlefield)
   whitespace = [[0,1], [1,0], [0,-1], [-1,0], [1,1], [-1,1], [1,-1], [-1, -1]]
-  if potential_x_position > 0 && potential_x_position < 11 && potential_y_position > 0 && potential_y_position < 11 && battlefield[potential_x_position][potential_y_position] == 0
+  if potential_x_pos > 0 && potential_x_pos < 11 && potential_y_pos > 0 && potential_y_pos < 11 && battlefield[potential_x_pos][potential_y_pos] == 0
     for i in 0..7
-      check_x_position = potential_x_position + whitespace[i][0];
-      check_y_position = potential_y_position + whitespace[i][1];
+      check_x_position = potential_x_pos + whitespace[i][0];
+      check_y_position = potential_y_pos + whitespace[i][1];
       if check_x_position > 0 && check_x_position < 11 && check_y_position > 0 && check_y_position < 11 && battlefield[check_x_position][check_y_position] == 1
         return false
       end
@@ -34,8 +34,8 @@ def create_ships ();
   begin
     for ships_number in 0..(3 - decks_number)
       begin
-        potential_x_position = Random.rand(10) + 1
-        potential_y_position = Random.rand(10) + 1
+        potential_x_pos = Random.rand(10) + 1
+        potential_y_pos = Random.rand(10) + 1
         is_horizontal_position = Random.rand(2)
         if is_horizontal_position == 0
           is_vertical_position = 1
@@ -44,13 +44,13 @@ def create_ships ();
         end
         b = true
         for i in 0..decks_number
-          unless check_space(potential_x_position + is_horizontal_position * i, potential_y_position + is_vertical_position * i, battlefield) && (potential_x_position + is_horizontal_position * i) <= 10 && (potential_y_position + is_vertical_position * i) <= 10
+          unless check_space(potential_x_pos + is_horizontal_position * i, potential_y_pos + is_vertical_position * i, battlefield) && (potential_x_pos + is_horizontal_position * i) <= 10 && (potential_y_pos + is_vertical_position * i) <= 10
             b = false
           end
         end
         if b then
           for i in 0..decks_number
-            battlefield[potential_x_position + is_horizontal_position * i][potential_y_position + is_vertical_position * i] = 1
+            battlefield[potential_x_pos + is_horizontal_position * i][potential_y_pos + is_vertical_position * i] = 1
           end
         end
       end until b
