@@ -1,4 +1,5 @@
 #initialize battlefield
+#new comment
 def init_battlefield()
   battlefield = Array.new()
   for i in 0..10
